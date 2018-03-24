@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<!--<app-header></app-header>-->
+		<app-header></app-header>
 		<v-content class="content">
 			<v-container>
 				<router-view></router-view>
@@ -10,10 +10,18 @@
 </template>
 
 <script>
+	import Header from './components/header/Header.vue'
+
 	export default {
-		name: 'App'
+		name: 'App',
+		components: {
+			appHeader: Header
+		}
 	}
 </script>
 
 <style>
+	#app {
+		background-color: #DFDFAF;
+	}
 </style>

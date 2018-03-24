@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/dist/vuetify.min.css';
 import VueRouter from 'vue-router'
 import {routes} from './router/Router'
 
