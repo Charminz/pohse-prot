@@ -11,12 +11,12 @@
 				Erply E-shop
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
-			<v-text-field
-				flat
-				solo-inverted
-				label="Search"
-				class="hidden-sm-and-down"
-			></v-text-field>
+			<!--<v-text-field-->
+			<!--flat-->
+			<!--solo-inverted-->
+			<!--label="Search"-->
+			<!--class="hidden-sm-and-down"-->
+			<!--&gt;</v-text-field>-->
 			<v-spacer></v-spacer>
 		</v-toolbar>
 		<v-navigation-drawer
@@ -38,9 +38,9 @@
 <script>
 	export default {
 		name: "Header",
-		data: function() {
+		data: function () {
 			return {
-				drawer: null
+				drawer: false
 			}
 		}
 	}
@@ -52,6 +52,10 @@
 	}
 
 	.nav-drawer {
-		background-color: #ABCB7C;
+		background-color: #B8CE9C;
+		-webkit-box-shadow: 2px 4px 11px 0px rgba(0,0,0,0.48);
+		-moz-box-shadow: 2px 4px 11px 0px rgba(0,0,0,0.48);
+		box-shadow: 2px 4px 11px 0px rgba(0,0,0,0.48);
+
 	}
 </style>
