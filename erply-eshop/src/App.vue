@@ -9,11 +9,21 @@
 
 <script>
 	import Header from './components/header/Header.vue'
+	import { Axios } from './api/RetrieveData';
 
 	export default {
 		name: 'App',
 		components: {
 			appHeader: Header
+		},
+		created() {
+			Axios.get()
+				.then(response => {
+					this.$store.dispatch('setProducts', response.data);
+				})
+				.catch(e => {
+					console.log(e);
+				})
 		}
 	}
 </script>

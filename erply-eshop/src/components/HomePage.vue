@@ -6,20 +6,9 @@
 		<div style="display:flex" v-show="contentLoaded">
 			<div>
 				<v-list class="sidebar">
-					<v-list-tile @click="" two-line>
-						<v-list-tile-action>
-							<v-icon>shopping_cart</v-icon>
-						</v-list-tile-action>
-						<v-list-tile-content>
-							<v-list-tile-title>
-								Shopping cart ( {{ totalPrice }} € )
-							</v-list-tile-title>
-						</v-list-tile-content>
-					</v-list-tile>
-					<v-divider></v-divider>
 					<v-subheader>
 						<v-icon>location_on</v-icon>
-						Location Filter
+						Location Filters:
 					</v-subheader>
 					<v-list-tile @click.prevent="filterByCountry('All')">
 						<v-list-tile-action>
@@ -79,7 +68,6 @@
 		},
 		data() {
 			return {
-				products: [],
 				productsList: [[]],
 				numberOfProducts: 0,
 				pageNumber: 1,
@@ -88,9 +76,9 @@
 			}
 		},
 		computed: {
-			totalPrice() {
-				return this.$store.getters.totalPrice;
-			},
+			allProducts() {
+				return this.$store.getters.products;
+			}
 		},
 		methods: {
 			filterByCountry(type) {
@@ -101,26 +89,26 @@
 					this.selectedCountry = type;
 
 					for (let prod = 0; prod < this.numberOfProducts; prod++) {
-						if (this.products[prod].store === this.selectedCountry || this.selectedCountry === "All") {
+						if (this.allProducts[prod].store === this.selectedCountry || this.selectedCountry === "All") {
 							if (prodNr === 24) {
 								prodNr = 0;
 								page++;
 								this.productsList.push([]);
 							}
-							this.productsList[page].push(this.products[prod]);
+							this.productsList[page].push(this.allProducts[prod]);
 							prodNr++;
 						}
 					}
 					this.contentLoaded = true;
 				}
-
 			}
 		},
 		created() {
 			Axios.get()
 				.then(response => {
-					this.products = response.data;
-					this.numberOfProducts = response.data.length;
+					this.$store.dispatch('setProducts', response.data);
+
+					this.numberOfProducts = this.allProducts.length;
 					let prodNr = 0;
 					let page = 0;
 
@@ -130,7 +118,7 @@
 							page++;
 							this.productsList.push([]);
 						}
-						this.productsList[page].push(this.products[prod]);
+						this.productsList[page].push(this.allProducts[prod]);
 						prodNr++;
 					}
 					this.contentLoaded = true;

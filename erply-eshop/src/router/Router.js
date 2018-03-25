@@ -6,5 +6,10 @@ export const routes = [
 		name: 'HomePage',
 		component: HomePage
 	}
+	{
+		path: '/shoppingcart',
+		name: 'ShoppingCart',
+		component: ShoppingCart
+	},
 ];
 
