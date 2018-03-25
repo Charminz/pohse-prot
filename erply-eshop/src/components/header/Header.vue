@@ -6,7 +6,8 @@
 			clipped-left
 			class="nav-toolbar"
 		>
-			<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+			<v-spacer></v-spacer>
+			<!--<v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>-->
 			<v-toolbar-title>
 				Erply E-shop
 			</v-toolbar-title>
@@ -17,21 +18,20 @@
 			<!--label="Search"-->
 			<!--class="hidden-sm-and-down"-->
 			<!--&gt;</v-text-field>-->
-			<v-spacer></v-spacer>
 		</v-toolbar>
-		<v-navigation-drawer
-			clipped
-			app
-			class="nav-drawer"
-			v-model="drawer">
-			<v-list>
-				<v-list-tile>
-					<v-list-tile-content>
-						<v-list-tile-title>Shop</v-list-tile-title>
-					</v-list-tile-content>
-				</v-list-tile>
-			</v-list>
-		</v-navigation-drawer>
+		<!--<v-navigation-drawer-->
+			<!--clipped-->
+			<!--app-->
+			<!--class="nav-drawer"-->
+			<!--v-model="drawer">-->
+			<!--<v-list>-->
+				<!--<v-list-tile>-->
+					<!--<v-list-tile-content>-->
+						<!--<v-list-tile-title>Shop</v-list-tile-title>-->
+					<!--</v-list-tile-content>-->
+				<!--</v-list-tile>-->
+			<!--</v-list>-->
+		<!--</v-navigation-drawer>-->
 	</div>
 </template>
 

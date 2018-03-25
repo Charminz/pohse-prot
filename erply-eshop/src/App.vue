@@ -2,9 +2,7 @@
 	<v-app>
 		<app-header></app-header>
 		<v-content class="content">
-			<v-container>
-				<router-view></router-view>
-			</v-container>
+			<router-view></router-view>
 		</v-content>
 	</v-app>
 </template>
@@ -23,5 +21,9 @@
 <style>
 	#app {
 		background-color: #BFD5AA;
+		width: 100%;
+	}
+	.app-container {
+		margin: 0;
 	}
 </style>
