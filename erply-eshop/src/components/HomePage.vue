@@ -7,12 +7,11 @@
 			<div>
 				<v-list class="sidebar">
 					<v-subheader>
-						<v-icon>location_on</v-icon>
-						Location Filters:
+						Filter by Location:
 					</v-subheader>
 					<v-list-tile @click.prevent="filterByCountry('All')">
 						<v-list-tile-action>
-							<v-icon small>fiber_manual_record</v-icon>
+							<v-icon>keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
@@ -22,7 +21,7 @@
 					</v-list-tile>
 					<v-list-tile @click.prevent="filterByCountry('Estonia')">
 						<v-list-tile-action>
-							<v-icon small>fiber_manual_record</v-icon>
+							<v-icon>keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
@@ -32,11 +31,34 @@
 					</v-list-tile>
 					<v-list-tile @click.prevent="filterByCountry('Finland')">
 						<v-list-tile-action>
-							<v-icon small>fiber_manual_record</v-icon>
+							<v-icon>keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
 								Finland
+							</v-list-tile-title>
+						</v-list-tile-content>
+					</v-list-tile>
+					<v-subheader>
+						Filter by Availability:
+					</v-subheader>
+					<v-list-tile @click.prevent="">
+						<v-list-tile-action>
+							<v-icon color="green" small>check</v-icon>
+						</v-list-tile-action>
+						<v-list-tile-content>
+							<v-list-tile-title>
+								In Stock
+							</v-list-tile-title>
+						</v-list-tile-content>
+					</v-list-tile>
+					<v-list-tile @click.prevent="">
+						<v-list-tile-action>
+							<v-icon color="red" small>clear</v-icon>
+						</v-list-tile-action>
+						<v-list-tile-content>
+							<v-list-tile-title>
+								Out of Stock
 							</v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
@@ -104,28 +126,20 @@
 			}
 		},
 		created() {
-			Axios.get()
-				.then(response => {
-					this.$store.dispatch('setProducts', response.data);
+			this.numberOfProducts = this.allProducts.length;
+			let prodNr = 0;
+			let page = 0;
 
-					this.numberOfProducts = this.allProducts.length;
-					let prodNr = 0;
-					let page = 0;
-
-					for (let prod = 0; prod < this.numberOfProducts; prod++) {
-						if (prodNr === 24) {
-							prodNr = 0;
-							page++;
-							this.productsList.push([]);
-						}
-						this.productsList[page].push(this.allProducts[prod]);
-						prodNr++;
-					}
-					this.contentLoaded = true;
-				})
-				.catch(e => {
-					console.log(e);
-				})
+			for (let prod = 0; prod < this.numberOfProducts; prod++) {
+				if (prodNr === 24) {
+					prodNr = 0;
+					page++;
+					this.productsList.push([]);
+				}
+				this.productsList[page].push(this.allProducts[prod]);
+				prodNr++;
+			}
+			this.contentLoaded = true;
 		}
 	}
 

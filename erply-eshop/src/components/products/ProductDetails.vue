@@ -1,12 +1,8 @@
 <template>
 	<v-container grid-list-md text-xs-center>
-		<v-layout row wrap>
+		<v-layout row wrap class="product-info">
 			<v-flex xs6>
-				<v-card color="transparent" flat>
-					<!--<v-card-media class="px-0" height="87vh" :src="getProduct.image"></v-card-media>-->
-					<v-card-media class="px-0" height="87vh" src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/7/26/1/CN1B01_oven-baked-salmon_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382545141944.jpeg"></v-card-media>
-
-				</v-card>
+				<img class="product-image" :src="getProduct.image" alt="">
 			</v-flex>
 			<v-flex xs6>
 				<v-card dark color="secondary" height="100%">
@@ -71,10 +67,6 @@
 </script>
 
 <style scoped>
-	.product-image {
-
-	}
-
 	.additional-info {
 		width: 75%;
 		margin: auto;
@@ -84,5 +76,14 @@
 
 	.info-section {
 		margin-bottom: 20px;
+	}
+
+	.product-info {
+		max-height: 480px;
+	}
+
+	.product-image {
+		height: 100%;
+		width: 100%;
 	}
 </style>

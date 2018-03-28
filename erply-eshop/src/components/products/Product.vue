@@ -17,7 +17,7 @@
 		</v-card-text>
 		<v-card-actions>
 			<v-spacer></v-spacer>
-			<v-btn icon large @click.prevent="addToCart">
+			<v-btn :disabled="!product.instock" icon large @click.prevent="addToCart">
 				<v-icon color="green" medium >add_shopping_cart</v-icon>
 			</v-btn>
 			<v-spacer></v-spacer>

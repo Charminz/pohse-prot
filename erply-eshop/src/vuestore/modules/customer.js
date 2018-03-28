@@ -8,7 +8,7 @@ const mutations = {
 		const record = state.shoppingCart.find(element => element.id == product.id);
 
 		if (record) {
-			record.quantity += 1;
+			record.quantity++;
 		} else {
 			product.quantity = 1;
 			state.shoppingCart.push(product);
@@ -19,7 +19,7 @@ const mutations = {
 		const record = state.shoppingCart.find(element => element.id == product.id);
 
 		if (record.quantity > 1) {
-			record.quantity -= 1
+			record.quantity--
 		} else {
 			state.shoppingCart.splice(state.shoppingCart.indexOf(record), 1);
 		}
@@ -39,11 +39,11 @@ const actions = {
 
 const getters = {
 	shoppingCartProducts(state) {
-		return state.shoppingCart
+		return state.shoppingCart;
 	},
 	totalPrice(state) {
 		return state.totalPrice;
-	}
+	},
 };
 
 export default {

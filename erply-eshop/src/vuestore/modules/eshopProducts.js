@@ -6,7 +6,7 @@ const state = {
 const mutations = {
 	'SET_PRODUCTS'(state, products) {
 		state.products = products;
-		sessionStorage.setItem('products', JSON.stringify(products));
+		localStorage.setItem('products', JSON.stringify(products));
 	},
 };
 
@@ -18,10 +18,10 @@ const actions = {
 
 const getters = {
 	products(state) {
-		return JSON.parse(sessionStorage.getItem('products'));
+		return JSON.parse(localStorage.getItem('products'));
 	},
 	getProductById(state) {
-		let products = JSON.parse(sessionStorage.getItem('products'));
+		let products = JSON.parse(localStorage.getItem('products'));
 		return keyword => products.find(element => element.id == keyword);
 	}
 };
