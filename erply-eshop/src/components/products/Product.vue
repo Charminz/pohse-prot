@@ -1,8 +1,6 @@
 <template>
 	<v-card class="ma-4 product-card" hover :to="{ name: 'ProductDetails', params: { productId: product.id , product: product }}">
-		<v-card-media src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/7/26/1/CN1B01_oven-baked-salmon_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382545141944.jpeg"
-					  height="100px"></v-card-media>
-		<!--<v-card-media :src="product.image" height="100px"></v-card-media>-->
+		<v-card-media :src="product.image" height="100px"></v-card-media>
 		<v-card-title primary-title>
 			<div class="product-title">
 				<h3 class="headline">{{ product.name }}</h3>

@@ -11,20 +11,20 @@
 		</v-flex>
 		<v-flex xs4>
 			<div class="product-quantity">
-				<v-btn class="button" icon flat @click="addProductQuantity()">
+				<v-btn class="button" color="light-green darken-1" icon @click="addProductQuantity()">
 					<v-icon>plus_one</v-icon>
 				</v-btn>
 				<h3 class="quantity">
 					{{ product.quantity }}
 				</h3>
-				<v-btn class="button" icon flat @click="removeProductQuantity()">
+				<v-btn class="button" icon color="deep-orange lighten-1" @click="removeProductQuantity()">
 					<v-icon>exposure_neg_1</v-icon>
 				</v-btn>
 			</div>
 		</v-flex>
 		<v-flex xs4>
 			<div class="product-price">
-				<h3>{{ product.quantity * product.price }} {{ product.currency }}</h3>
+				<h3 class="product-price-h">{{ product.quantity * product.price }} {{ product.currency }}</h3>
 			</div>
 		</v-flex>
 	</v-layout>
@@ -68,6 +68,8 @@
 		display: flex;
 		justify-content: center;
 		height: 100%;
+		border-left: 1px solid #2E270F;
+		border-right: 1px solid #2E270F;
 	}
 
 	.quantity {
@@ -75,15 +77,19 @@
 		margin-bottom: auto;
 		width: 100px;
 		padding: 5px;
-		background-color: #B1BD84;
+		/*background-color: #B1BD84;*/
 	}
 
 	.product-price {
 		height: 100%;
+
+		display: flex;
+		justify-content: center;
 	}
 
-	.product-price h3 {
-		margin: auto;
+	.product-price-h {
+		margin-top:auto;
+		margin-bottom:auto;
 	}
 
 	.button {

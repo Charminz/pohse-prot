@@ -20,6 +20,17 @@
 		<div v-for="product in shoppingCart" :key="product.id" class="product-row">
 			<shopping-cart-product :product="product"></shopping-cart-product>
 		</div>
+		<v-layout row wrap>
+			<v-flex xs4>
+			</v-flex>
+			<v-flex xs4>
+			</v-flex>
+			<v-flex xs4 class="total-price-parent">
+				<div class="total-price">
+					<h3>Total price: {{ totalPrice }} EUR</h3>
+				</div>
+			</v-flex>
+		</v-layout>
 	</v-container>
 	<v-container class="empty-error" v-else grid-list-md text-xs-center>
 		<h1>
@@ -28,13 +39,13 @@
 		<h4>In order to buy items you have to add them to your shopping cart</h4>
 		<div class="return-section">
 			<h3>Return to our shop:</h3>
-			<v-btn color="green darken-4" class="back-btn" :to="{ name: 'HomePage' }"> Back </v-btn>
+			<v-btn color="green darken-4" class="back-btn" :to="{ name: 'HomePage' }"> Back</v-btn>
 		</div>
 	</v-container>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import {mapGetters} from 'vuex'
 	import ShoppingCartProduct from './ShoppingCartProduct'
 
 	export default {
@@ -44,7 +55,8 @@
 		},
 		computed: {
 			...mapGetters({
-				shoppingCart: 'shoppingCartProducts'
+				shoppingCart: 'shoppingCartProducts',
+				totalPrice: 'totalPrice'
 			}),
 		}
 	}
@@ -78,5 +90,21 @@
 
 	.back-btn:hover {
 		background-color: #2E7D32 !important;
+	}
+
+	.total-price-parent {
+		padding-top: 0 !important;
+	}
+	.total-price {
+		background-color: #7DBB3E;
+		height: 50px;
+		display: flex;
+		border-left: 1px solid darkgreen;
+		border-bottom: 1px solid darkgreen;
+		border-right: 1px solid darkgreen;
+	}
+
+	.total-price > h3 {
+		margin: auto;
 	}
 </style>
