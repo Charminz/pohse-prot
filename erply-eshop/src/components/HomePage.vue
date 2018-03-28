@@ -9,9 +9,9 @@
 					<v-subheader>
 						Filter by Location:
 					</v-subheader>
-					<v-list-tile @click.prevent="filterByCountry('All')">
+					<v-list-tile @click.prevent="selectedCountry = 'All'">
 						<v-list-tile-action>
-							<v-icon>keyboard_arrow_left</v-icon>
+							<v-icon color="green darken-4">keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
@@ -19,9 +19,9 @@
 							</v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
-					<v-list-tile @click.prevent="filterByCountry('Estonia')">
+					<v-list-tile @click.prevent="selectedCountry = 'Estonia'">
 						<v-list-tile-action>
-							<v-icon>keyboard_arrow_left</v-icon>
+							<v-icon color="green darken-4">keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
@@ -29,9 +29,9 @@
 							</v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
-					<v-list-tile @click.prevent="filterByCountry('Finland')">
+					<v-list-tile @click.prevent="selectedCountry = 'Finland'">
 						<v-list-tile-action>
-							<v-icon>keyboard_arrow_left</v-icon>
+							<v-icon color="green darken-4">keyboard_arrow_left</v-icon>
 						</v-list-tile-action>
 						<v-list-tile-content>
 							<v-list-tile-title>
@@ -42,7 +42,17 @@
 					<v-subheader>
 						Filter by Availability:
 					</v-subheader>
-					<v-list-tile @click.prevent="">
+					<v-list-tile @click.prevent="selectedStock = 'All'">
+						<v-list-tile-action>
+							<v-icon color="blue">fa-circle-notch</v-icon>
+						</v-list-tile-action>
+						<v-list-tile-content>
+							<v-list-tile-title>
+								All
+							</v-list-tile-title>
+						</v-list-tile-content>
+					</v-list-tile>
+					<v-list-tile @click.prevent="selectedStock = true">
 						<v-list-tile-action>
 							<v-icon color="green" small>check</v-icon>
 						</v-list-tile-action>
@@ -52,7 +62,7 @@
 							</v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
-					<v-list-tile @click.prevent="">
+					<v-list-tile @click.prevent="selectedStock = false">
 						<v-list-tile-action>
 							<v-icon color="red" small>clear</v-icon>
 						</v-list-tile-action>
@@ -95,6 +105,15 @@
 				pageNumber: 1,
 				contentLoaded: false,
 				selectedCountry: 'All',
+				selectedStock: 'All'
+			}
+		},
+		watch: {
+			selectedCountry() {
+				this.filterProducts();
+			},
+			selectedStock() {
+				this.filterProducts();
 			}
 		},
 		computed: {
@@ -103,26 +122,24 @@
 			}
 		},
 		methods: {
-			filterByCountry(type) {
-				if (type != this.selectedCountry) {
-					let prodNr = 0;
-					let page = 0;
-					this.productsList = [[]];
-					this.selectedCountry = type;
+			filterProducts() {
+				let prodNr = 0;
+				let page = 0;
+				this.productsList = [[]];
 
-					for (let prod = 0; prod < this.numberOfProducts; prod++) {
-						if (this.allProducts[prod].store === this.selectedCountry || this.selectedCountry === "All") {
-							if (prodNr === 24) {
-								prodNr = 0;
-								page++;
-								this.productsList.push([]);
-							}
-							this.productsList[page].push(this.allProducts[prod]);
-							prodNr++;
+				for (let prod = 0; prod < this.numberOfProducts; prod++) {
+					if ((this.allProducts[prod].store === this.selectedCountry || this.selectedCountry === "All")
+						&& (this.selectedStock === 'All' || this.selectedStock === this.allProducts[prod].instock)) {
+						if (prodNr === 24) {
+							prodNr = 0;
+							page++;
+							this.productsList.push([]);
 						}
+						this.productsList[page].push(this.allProducts[prod]);
+						prodNr++;
 					}
-					this.contentLoaded = true;
 				}
+				this.contentLoaded = true;
 			}
 		},
 		created() {

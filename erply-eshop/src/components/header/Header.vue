@@ -6,22 +6,19 @@
 			clipped-left
 			class="nav-toolbar"
 		>
-			<v-layout row wrap >
-				<v-spacer></v-spacer>
-				<router-link style="color: white; text-decoration: none;" :to="{ name: 'HomePage' }">
-					<v-toolbar-title class="title">
-						Erply E-shop
-					</v-toolbar-title>
-				</router-link>
+			<router-link style="color: white; text-decoration: none;" :to="{ name: 'HomePage' }">
+				<v-toolbar-title>
+					Erply E-shop
+				</v-toolbar-title>
+			</router-link>
 
-				<v-spacer></v-spacer>
-				<v-toolbar-items class="shopping-cart-item">
-					<v-btn flat :to="{ name: 'ShoppingCart'}">
-						<v-icon>shopping_cart</v-icon>
-						Shopping cart ( {{ totalPrice }} € )
-					</v-btn>
-				</v-toolbar-items>
-			</v-layout>
+			<v-spacer></v-spacer>
+			<v-toolbar-items class="shopping-cart-item">
+				<v-btn class="cart-btn" flat :to="{ name: 'ShoppingCart'}">
+					<v-icon>shopping_cart</v-icon>
+					Shopping cart ( {{ totalPrice }} € )
+				</v-btn>
+			</v-toolbar-items>
 
 		</v-toolbar>
 	</div>
@@ -50,9 +47,8 @@
 
 	.shopping-cart-item {
 		width: 230px;
-	}
-
-	.title {
-		margin-right: -50px;
+		height: 100%;
+		margin-right: 0;
+		padding-right: 0;
 	}
 </style>
